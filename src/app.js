@@ -39,6 +39,7 @@ class App extends React.Component {
 
               </Route>
               </Switch>
+              
               <Switch>
 
               <Route path="/profile">
@@ -50,8 +51,10 @@ class App extends React.Component {
               </Route>
               </Switch>
 
+         
             <Footer />
           </IsLoadingAndError>
+
         </Router>
       </>
     )
