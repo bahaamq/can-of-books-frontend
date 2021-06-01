@@ -1,5 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {Card,Button} from 'react-bootstrap';
 import axios from 'axios';
 import { withAuth0 } from '@auth0/auth0-react';
 
@@ -11,7 +12,8 @@ class BestBooks extends React.Component {
         this.state = {
             server:process.env.REACT_APP_SERVER_URL,
             email:'',
-            books:[]
+            booksData:[],
+            
         }
       }
 
@@ -23,9 +25,9 @@ class BestBooks extends React.Component {
             email: user.email
           }
           const books = await axios.get(`${this.state.server}/book`, {params: paramsObj});
-          console.log(books.data)
+          console.log(this.state.booksData)
           this.setState({
-           books:books.data
+           booksData:books.data
           });
         } catch (error) {
           console.log(error);
@@ -35,13 +37,20 @@ class BestBooks extends React.Component {
    render() {
     return (
       <>
+     
 
-{this.state.books.map((item, idx) => {
+{this.state.booksData.map((item, idx) => {
                         return (
-                            <div key={idx}>
-                                {item.name}
-                                {item.description}
-                            </div>
+                          <Card key={idx} style={{ width: '18rem' }}>
+                          <Card.Img variant="top" src={item.image} />
+                          <Card.Body>
+                            <Card.Title>{item.name}</Card.Title>
+                            <Card.Text>
+                              {item.description}<br/>
+                              {item.status}
+                            </Card.Text>
+                          </Card.Body>
+                        </Card>
                         )
                     })
                 }
