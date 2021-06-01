@@ -1,6 +1,7 @@
 import React from 'react';
 import { withAuth0 } from '@auth0/auth0-react';
 import Header from './Header';
+import AddBook from './AddBook';
 
 
 import IsLoadingAndError from './IsLoadingAndError';
@@ -36,6 +37,13 @@ class App extends React.Component {
 
                 {!isAuthenticated && 
                 <Login />}
+
+{isAuthenticated && 
+
+<AddBook />
+
+}
+
 
               </Route>
               </Switch>

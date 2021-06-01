@@ -10,7 +10,7 @@ class BestBooks extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            server:process.env.REACT_APP_SERVER_URL,
+            server:'http://localhost:3300',
             email:'',
             booksData:[],
             
@@ -19,16 +19,20 @@ class BestBooks extends React.Component {
 
       componentDidMount= async () => {
         const { user} = this.props.auth0;
-
         try {
+          
           const paramsObj = {
             email: user.email
           }
+
+          console.log(paramsObj.email)
           const books = await axios.get(`${this.state.server}/book`, {params: paramsObj});
           console.log(this.state.booksData)
           this.setState({
            booksData:books.data
           });
+
+          console.log(user.email)
         } catch (error) {
           console.log(error);
         }
