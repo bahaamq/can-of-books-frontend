@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-const axios = require("axios");
 
-class BookFormModal extends Component {
+
+class UpdateFormModale extends Component {
   render() {
 
     console.log('BookFormModal Render')
@@ -13,7 +13,7 @@ class BookFormModal extends Component {
       <>
         <Modal show={this.props.show} onHide={this.props.handleClose}>
           <Modal.Header closeButton></Modal.Header>
-          <Form onSubmit={this.props.handlesubmit}>
+          <Form onSubmit={this.props.updateBook}>
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Book Name</Form.Label>
               <Form.Control
@@ -61,4 +61,4 @@ class BookFormModal extends Component {
   }
 }
 
-export default BookFormModal;
+export default UpdateFormModale;
