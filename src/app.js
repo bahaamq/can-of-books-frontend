@@ -23,11 +23,11 @@ class App extends React.Component {
               <Route path="/">
                 {/* TODO: if the user is logged in, render the `MyFavoriteBooks` component, if they are not, render the `Login` component */}
 
+          
                 {isAuthenticated && <MyFavoriteBooks />}
 
                 {!isAuthenticated && <Login />}
 
-                {isAuthenticated && <AddBook />}
               </Route>
             </Switch>
 

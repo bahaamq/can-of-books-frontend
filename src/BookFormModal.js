@@ -13,8 +13,10 @@ class BookFormModal extends Component {
       status: "",
       description: "",
       img: "",
-      newBook: [],
-    };
+    }
+
+    console.log('BookFormModal Constructor')
+
   }
 
   getName = (event) => {
@@ -54,13 +56,13 @@ class BookFormModal extends Component {
         email: user.email,
       };
 
-      const newBook = await axios.post(
-        `${process.env.REACT_APP_SERVER_URL}/Addbook`,
+      const newElement= await axios.post(
+       `${process.env.REACT_APP_SERVER_URL}/Addbook`,
         addBooksObj
       );
-      this.setState({
-        newBook: newBook.data,
-      });
+
+ 
+
       this.props.handleClose();
     } catch (error) {
       console.log(error);
@@ -68,6 +70,9 @@ class BookFormModal extends Component {
   };
 
   render() {
+
+    console.log('BookFormModal Render')
+
     return (
       <>
         <Modal show={this.props.shows} onHide={this.props.handleClose}>
