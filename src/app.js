@@ -1,25 +1,17 @@
-import React from 'react';
-import { withAuth0 } from '@auth0/auth0-react';
-import Header from './Header';
-import AddBook from './AddBook';
+import React from "react";
+import { withAuth0 } from "@auth0/auth0-react";
+import Header from "./Header";
+import AddBook from "./AddBook";
 
+import IsLoadingAndError from "./IsLoadingAndError";
+import Footer from "./footer";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import IsLoadingAndError from './IsLoadingAndError';
-import Footer from './footer';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from "react-router-dom";
-
-
-import Login from './login';
-import MyFavoriteBooks from './myFavoriteBooks';
-import Profile from './Profile';
-
+import Login from "./login";
+import MyFavoriteBooks from "./myFavoriteBooks";
+import Profile from "./Profile";
 
 class App extends React.Component {
-
   render() {
     const { isAuthenticated } = this.props.auth0;
     return (
@@ -31,42 +23,27 @@ class App extends React.Component {
               <Route path="/">
                 {/* TODO: if the user is logged in, render the `MyFavoriteBooks` component, if they are not, render the `Login` component */}
 
+                {isAuthenticated && <MyFavoriteBooks />}
 
-                {isAuthenticated&& 
-                <MyFavoriteBooks />}
+                {!isAuthenticated && <Login />}
 
-                {!isAuthenticated && 
-                <Login />}
-
-{isAuthenticated && 
-
-<AddBook />
-
-}
-
-
+                {isAuthenticated && <AddBook />}
               </Route>
-              </Switch>
-              
-              <Switch>
+            </Switch>
 
+            <Switch>
               <Route path="/profile">
-
                 {/* TODO: add a route with a path of '/profile' that renders a `Profile` component */}
-             <Profile />
-            
-
+                <Profile />
               </Route>
-              </Switch>
+            </Switch>
 
-         
             <Footer />
           </IsLoadingAndError>
-
         </Router>
       </>
-    )
+    );
   }
 }
 
-export default  withAuth0(App);
+export default withAuth0(App);
